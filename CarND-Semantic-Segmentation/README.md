@@ -16,7 +16,7 @@ The training and testing dataset is KITTI data set. Download the [Kitti Road dat
 ### Start
 ##### Implement
 To build a FCN, the final fully connected layer is converted to a 1x1 convolution layer in the VGG-16, which perfoms as the encoder. The depth equals to the number of desired classes which are either road or not road. In the decoder, to refine the detailed segmentation, we improved the net by using skip connections. The layers (layer 3 and layer 4 in VGG-16) go throught the 1x1 convolutions and add to the transposed convolution layer (element-wise). 
-<img src="./structure.PNG">
+<img src="./structure1.PNG">
 ##### Hyperparameters
 - batch size: 2
 - epochs: 50
