@@ -12,10 +12,11 @@ Make sure you have the following is installed:
 ##### Dataset
 The training and testing dataset is KITTI data set. Download the [Kitti Road dataset](http://www.cvlibs.net/datasets/kitti/eval_road.php) from [here](http://www.cvlibs.net/download.php?file=data_road.zip).  Extract the dataset in the `data` folder.  This will create the folder `data_road` with all the training a test images.
 
+
 ### Start
 ##### Implement
 To build a FCN, the final fully connected layer is converted to a 1x1 convolution layer in the VGG-16, which perfoms as the encoder. The depth equals to the number of desired classes which are either road or not road. In the decoder, to refine the detailed segmentation, we improved the net by using skip connections. The layers (layer 3 and layer 4 in VGG-16) go throught the 1x1 convolutions and add to the transposed convolution layer (element-wise). 
-
+<img src="./structure.PNG">
 ##### Hyperparameters
 - batch size: 2
 - epochs: 50
@@ -32,7 +33,7 @@ python main.py
 **Note** If running this in Jupyter Notebook system messages, such as those regarding test status, may appear in the terminal rather than the notebook.
 
 ### Result
-
+<img src="./.PNG">
  
  ### Tips
 - The link for the frozen `VGG16` model is hardcoded into `helper.py`.  The model can be found [here](https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/vgg.zip)
