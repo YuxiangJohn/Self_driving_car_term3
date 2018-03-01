@@ -1,6 +1,25 @@
 # CarND-Path-Planning-Project
-Self-Driving Car Engineer Nanodegree Program
-   
+<img src="./pp.gif">
+
+In this project, a simulated car dirve itself along as highway loop. The car should deal with the traffic without any collision and keep in the road. The car keep the speed about 50 miles/hour. The car make on speeding up and down, lane changing according to other cars on the lanes. The trajectory of the car should be smooth. The accelerate and decelerate should be resonable. 
+
+### Approach
+We use Frenet coordinates(s,d) instead of Cartesian coordinate(x,y) to simplify the path planning. In Frenet coordinates, s denotes longitudinal displacement along the road, and d denotes lateral displacement from the center dividing line.
+
+<img src="./frenet.png">
+
+Firstly, we analyzed the traffic information from the sensor fusion data. The data provides other cars information on the lanes such as the (x,y) and speed. if the d value of the car is 0<d<4, the car is on the left lane; 4<d<8 is on the middle lane; 8<d<12 is on the right lane.
+
+Secondly, we use the localization data of the main car. We use  the data to record which lane the car is on.
+
+Thirdly, we analyze the traffic and the main car and make the decisions of behavior. If our car and the car ahead is too close, the car will check for lane changing. The left lane changing is prioritized if the car is not on the left lane. If there are other cars on the lane the car would like to change(30 meters before and after), the car will speed down. In no cars is too close, the car will drive around 49.5 miles/h.
+
+After making the above decisions, the trajectory of the car is constructed base on the reference velocity and the target d value for the lane changing. Instead of a large number of waypoints, we use three waypoints widely spaced (30m, 60m, 90m) and interpolate a smooth path between these using spline interpolation. 
+
+To avoid rapid braking and acceleration, the constant acceleration is set to 0.224 miles/s^2.
+
+<img src="./s.png">
+
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases).
 
