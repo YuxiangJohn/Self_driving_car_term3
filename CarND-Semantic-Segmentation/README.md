@@ -16,7 +16,7 @@ The training and testing dataset is KITTI data set. Download the [Kitti Road dat
 ### Start
 ##### Implement
 To build a FCN, the final fully connected layer is converted to a 1x1 convolution layer in the VGG-16, which perfoms as the encoder. The depth equals to the number of desired classes which are either road or not road. In the decoder, to refine the detailed segmentation, we improved the net by using skip connections. The layers (layer 3 and layer 4 in VGG-16) go throught the 1x1 convolutions and add to the transposed convolution layer (element-wise). 
-<img src="./structure.PNG">
+<img src="./structure1.PNG">
 ##### Hyperparameters
 - batch size: 2
 - epochs: 50
@@ -41,3 +41,5 @@ python main.py
 - The original FCN-8s was trained in stages. The authors later uploaded a version that was trained all at once to their GitHub repo.  The version in the GitHub repo has one important difference: The outputs of pooling layers 3 and 4 are scaled before they are fed into the 1x1 convolutions.  As a result, some students have found that the model learns much better with the scaling layers included. The model may not converge substantially faster, but may reach a higher IoU and accuracy. 
 - When adding l2-regularization, setting a regularizer in the arguments of the `tf.layers` is not enough. Regularization loss terms must be manually added to your loss function. otherwise regularization is not implemented.
  
+### Reference
+https://arxiv.org/pdf/1411.4038.pdf
